@@ -1,0 +1,76 @@
+#73. Set Matrix Zeroes
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        vector<int>x(matrix.size());
+        vector<int>y(matrix[0].size());
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[0].size();j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    x[i]=1;
+                    y[j]=1;
+                }
+            }
+        }
+        for(int i=0;i<matrix.size();i++)
+        {
+            for(int j=0;j<matrix[0].size();j++)
+            {
+                if(x[i]==1||y[j]==1)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+    }
+};
+#283. Move Zeroes
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int k=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]!=0)
+            {
+                swap(nums[i],nums[k]);
+                k++;
+            }
+        }
+    }
+};
+#121. Best Time to Buy and Sell Stock
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int mini=prices[0];
+        int res=0;
+        for(int i=0;i<prices.size();i++)
+        {
+            mini=min(mini,prices[i]);
+            res=max(res,prices[i]-mini);
+            
+        }
+        return res;
+    }
+};
+#Chocolate Distribution Problem
+public:
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+    //code
+        sort(a.begin(),a.end());
+        int i=0,j=m-1;
+        long long res=INT_MAX;
+        while(j<n)
+        {
+            if((a[j]-a[i])<res)
+            {
+                res=a[j]-a[i];
+            }
+            i++;j++;
+        }
+        return res;
+    }  
