@@ -1,0 +1,66 @@
+#442. Find All Duplicates in an Array
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int>ans;
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++)
+        {
+           if(mp[nums[i]]==0)
+           mp[nums[i]]++;
+           else
+           ans.push_back(nums[i]);
+        }
+        return ans;
+    }
+};
+
+#11. Container With Most Water
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int i=0,j=height.size()-1;
+        int area=0;
+        while(i<=j)
+        {
+            area=max(area,min(height[i],height[j])*(j-i));
+            if(height[i]<height[j])
+            i++;
+            else
+            j--;
+        }
+        return area;
+    }
+};
+#15. 3Sum
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>res;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++)
+        {
+            if(i>0 && nums[i]==nums[i-1])
+            continue;
+            int j=i+1;
+            int k=nums.size()-1;
+            while(j<k)
+            {
+                int total=nums[i]+nums[j]+nums[k];
+                if(total>0)
+                k--;
+                else if(total<0)
+                j++;
+                else{
+                    res.push_back({nums[i],nums[j],nums[k]});
+                    j++;
+                    while(nums[j]==nums[j-1] && j<k){
+                        j++;
+                    }
+                }
+            }
+            
+        }
+        return res;
+    }
+};
